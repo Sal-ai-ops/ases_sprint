@@ -1,0 +1,47 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:3e671687-395b-41f5-a30f-a58921a69b79",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-20T14:30:00Z",
+    "component": {
+      "type": "application",
+      "name": "ases-assistant-service",
+      "version": "1.0.0",
+      "description": "nGOT AI & Software Engineering Security Core Assistant"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "python",
+      "version": "3.12.0",
+      "purl": "pkg:generic/python@3.12.0"
+    },
+    {
+      "type": "library",
+      "name": "requests",
+      "version": "2.31.0",
+      "purl": "pkg:pypi/requests@2.31.0",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "94429f1092a912e52467b4ebc692cbe3170757d598379435c249a4e3204868a2"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "urllib3",
+      "version": "2.0.7",
+      "purl": "pkg:pypi/urllib3@2.0.7",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "fdb671a170500e23114d5e16541f92e8612140f252bf447d28c8942b10be0123"
+        }
+      ]
+    }
+  ]
+}

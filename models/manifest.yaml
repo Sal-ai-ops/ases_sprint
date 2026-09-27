@@ -1,0 +1,15 @@
+version: "1.0"
+models:
+  - name: "ngot-clinical-instruct-v1"
+    version: "1.2.0"
+    format: "safetensors"
+    base_model: "Qwen/Qwen2.5-0.5B-Instruct"
+    digest: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    provenance:
+      source: "internal-huggingface-registry"
+      fine_tuned_by: "nGOT AI Engineering Team"
+      dataset_version: "ds-clinical-v3-2026-08"
+    license: "Apache-2.0"
+    known_limitations:
+      - "Requires strict prompt parameterization"
+      - "Not evaluated for autonomous code execution without sandbox"

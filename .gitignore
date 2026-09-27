@@ -1,0 +1,13 @@
+# Python & Virtual Envs
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Docker & Local Logs
+*.log
+sink/logs/
+
+# IDE & OS Files
+.vscode/
+.DS_Store

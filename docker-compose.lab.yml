@@ -1,0 +1,11 @@
+networks:
+  lab:
+    driver: bridge
+    internal: true
+  egress:
+    driver: bridge
+
+services:
+  sink:
+    build: ./sink
+    networks: [lab]

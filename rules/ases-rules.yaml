@@ -1,0 +1,18 @@
+rules:
+  - id: unsafe-pickle-model-load
+    pattern: pickle.load(...)
+    message: "CRITICAL: Loading models via pickle allows arbitrary code execution. Convert model artifacts to safetensors format."
+    severity: ERROR
+    languages: [python]
+
+  - id: unsafe-torch-load-no-weights-only
+    pattern: torch.load(..., weights_only=False, ...)
+    message: "HIGH: torch.load called with weights_only=False allows code execution during load. Enforce weights_only=True or use safetensors."
+    severity: ERROR
+    languages: [python]
+
+  - id: unconstrained-agent-shell-execution
+    pattern: subprocess.run(..., shell=True, ...)
+    message: "CRITICAL: Agent tool calling shell execution with shell=True creates command injection surface."
+    severity: ERROR
+    languages: [python]
