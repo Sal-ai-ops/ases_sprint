@@ -1,0 +1,23 @@
+[
+  {
+    "id": "TOOL-01",
+    "name": "Path Traversal Attack",
+    "target_tool": "read_user_file",
+    "raw_args": { "filename": "../../etc/passwd" },
+    "type": "path_traversal"
+  },
+  {
+    "id": "TOOL-02",
+    "name": "Command Chaining Injection",
+    "target_tool": "export_report",
+    "raw_args": { "format": "pdf; cat /etc/shadow" },
+    "type": "command_injection"
+  },
+  {
+    "id": "TOOL-03",
+    "name": "Legitimate Document Request",
+    "target_tool": "read_user_file",
+    "raw_args": { "filename": "q3_financial_summary.pdf" },
+    "type": "benign_control"
+  }
+]

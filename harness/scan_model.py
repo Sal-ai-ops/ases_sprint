@@ -1,5 +1,5 @@
 import hashlib
-import yaml
+import re
 from pathlib import Path
 
 UNSAFE_EXTENSIONS = {".pkl", ".pt", ".ckpt", ".bin"}
@@ -11,6 +11,17 @@ def compute_sha256(file_path: Path) -> str:
         while chunk := f.read(8192):
             sha256.update(chunk)
     return sha256.hexdigest()
+
+def read_manifest_digest(manifest_path: Path) -> str:
+    """Read integrity.digest from the manifest without requiring PyYAML."""
+    text = manifest_path.read_text(encoding="utf-8")
+    match = re.search(
+        r"(?m)^integrity:\s*\n(?:^[ \t]+.*\n)*?^[ \t]+digest:\s*['\"]?([^\s#'\"]+)",
+        text,
+    )
+    if match is None:
+        raise ValueError("Manifest is missing integrity.digest")
+    return match.group(1)
 
 def scan_and_verify_model(model_path: Path, manifest_path: Path) -> bool:
     print("=== ASES Day 9: Model Supply Chain Scanner ===")
@@ -33,10 +44,7 @@ def scan_and_verify_model(model_path: Path, manifest_path: Path) -> bool:
         print(f"[GATE 2 FAIL] Manifest file {manifest_path} missing. Cannot verify weight integrity.")
         return False
 
-    with open(manifest_path, "r") as f:
-        manifest = yaml.safe_load(f)
-
-    expected_digest = manifest["integrity"]["digest"]
+    expected_digest = read_manifest_digest(manifest_path)
     computed_digest = compute_sha256(model_path)
 
     print(f"  ├─ Expected SHA-256 : {expected_digest}")
